@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1157.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1554.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="naturum.MainpageController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1151.0" prefWidth="783.0" style="-fx-background-color: FFFFFF;">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1553.0" prefWidth="783.0" style="-fx-background-color: FFFFFF;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#646769" height="195.0" layoutX="-8.0" layoutY="403.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="817.0" />
             <ImageView fitHeight="126.0" fitWidth="137.0" layoutX="362.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
@@ -19,7 +20,7 @@
                   <Image url="@../assets/naturum-logo.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0defb" height="559.0" layoutX="-8.0" layoutY="598.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="817.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0defb" height="600.0" layoutX="-8.0" layoutY="598.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="817.0" />
             <Circle fill="#b8ffb9" layoutX="625.0" layoutY="116.0" opacity="0.5" radius="102.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#70c3ef" layoutX="523.0" layoutY="266.0" opacity="0.5" radius="102.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#e45548" layoutX="92.0" layoutY="292.0" opacity="0.5" radius="92.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
@@ -46,6 +47,7 @@
             <Circle fill="#ff7d7d" layoutX="400.0" layoutY="490.0" radius="58.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#ffad7d" layoutX="555.0" layoutY="490.0" radius="58.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#f67dff" layoutX="702.0" layoutY="490.0" radius="58.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Button layoutX="350.0" layoutY="1339.0" mnemonicParsing="false" onAction="#switchToTrivia" prefHeight="95.0" prefWidth="127.0" text="Quiz" />
          </children></AnchorPane>
   </content>
 </ScrollPane>
