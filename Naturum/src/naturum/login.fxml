@@ -12,7 +12,7 @@
    <children>
       <TextField layoutX="234.0" layoutY="174.0" prefHeight="38.0" prefWidth="227.0" />
       <TextField layoutX="234.0" layoutY="248.0" prefHeight="38.0" prefWidth="227.0" />
-      <Button layoutX="265.0" layoutY="315.0" mnemonicParsing="false" onAction="#switchToMainpage" prefHeight="38.0" prefWidth="64.0" text="Login" />
+      <Button layoutX="268.0" layoutY="309.0" mnemonicParsing="false" onAction="#switchToMainpage" prefHeight="38.0" prefWidth="64.0" text="Login" />
       <ImageView fitHeight="127.0" fitWidth="172.0" layoutX="261.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/naturum-logo.png" />

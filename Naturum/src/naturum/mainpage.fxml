@@ -47,7 +47,7 @@
             <Circle fill="#ff7d7d" layoutX="400.0" layoutY="490.0" radius="58.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#ffad7d" layoutX="555.0" layoutY="490.0" radius="58.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fill="#f67dff" layoutX="702.0" layoutY="490.0" radius="58.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Button layoutX="350.0" layoutY="1339.0" mnemonicParsing="false" onAction="#switchToTrivia" prefHeight="95.0" prefWidth="127.0" text="Quiz" />
+            <Button layoutX="350.0" layoutY="1339.0" mnemonicParsing="false" onAction="#switchToTriviaMenu" prefHeight="95.0" prefWidth="127.0" text="Quiz" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="naturum.triviaRecordController">
+   <children>
+      <Text layoutX="45.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trivia Record">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="45.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You may redo past trivias here. You will have infinite attempts. You can also choose to immediately see the answers. Note that points will not be affected." wrappingWidth="520.7926788330078">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <AnchorPane fx:id="buttonGroup" layoutY="-4.0" prefHeight="407.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="day1" disable="true" layoutX="28.0" layoutY="122.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 1" />
+            <Button fx:id="day2" disable="true" layoutX="148.0" layoutY="124.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 2" />
+            <Button fx:id="day3" disable="true" layoutX="260.0" layoutY="122.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 3" />
+            <Button fx:id="day4" disable="true" layoutX="378.0" layoutY="122.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 4" />
+            <Button fx:id="day5" disable="true" layoutX="496.0" layoutY="122.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 5" />
+            <Button fx:id="day6" disable="true" layoutX="28.0" layoutY="259.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 6" />
+            <Button fx:id="day7" disable="true" layoutX="143.0" layoutY="259.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 7" />
+            <Button fx:id="day8" disable="true" layoutX="260.0" layoutY="259.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 8" />
+            <Button fx:id="day9" disable="true" layoutX="378.0" layoutY="259.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 9" />
+            <Button fx:id="day10" disable="true" layoutX="496.0" layoutY="259.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="79.0" text="Day 10" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

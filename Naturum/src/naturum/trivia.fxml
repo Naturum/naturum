@@ -25,16 +25,22 @@
       <AnchorPane fx:id="correctScreen" layoutX="-1.0" prefHeight="400.0" prefWidth="606.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#70db99" height="400.0" stroke="BLACK" strokeType="INSIDE" width="606.0" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="121.0" fitWidth="121.0" layoutX="243.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/tick.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="219.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct!">
+            <Text fill="WHITE" layoutX="20.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations! You answered it correctly.">
                <font>
-                  <Font size="48.0" />
+                  <Font size="30.0" />
                </font>
             </Text>
+            <Label fx:id="pointsMessage" layoutX="79.0" layoutY="226.0" prefHeight="75.0" prefWidth="447.0" text="You have been awarded 2 points, you now have xx points." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="269.0" layoutY="316.0" mnemonicParsing="false" onAction="#switchToMainpage" prefHeight="40.0" prefWidth="69.0" text="Return" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="wrongScreen" layoutX="-1.0" prefHeight="400.0" prefWidth="606.0" visible="false">

@@ -32,7 +32,7 @@ public class TriviaController {
     private Scene scene;
     private Parent root;
     
-    @FXML Label question, correctAnswer;
+    @FXML Label question, correctAnswer, pointsMessage;
     @FXML Button answer1, answer2, answer3, answer4, home;
     @FXML AnchorPane correctScreen, wrongScreen, deathScreen;
     @FXML ProgressBar cooldown;
@@ -41,43 +41,45 @@ public class TriviaController {
     private String[] answerText;
     
     private int attempts = 1;
-    private int day = 1;
+    private int day;
+    private int points = 0;
+    private boolean redo;
     
     private String correct;
-    public void displayQuestion() throws IOException{
-        String questionTitle;
-        try(BufferedReader br = new BufferedReader(new FileReader("./TriviaSample.txt"))){
-            StringBuilder sb = new StringBuilder();
-            StringBuilder sb2 = new StringBuilder();
-            StringBuilder sb3 = new StringBuilder();
-            for (int i =0; i<(day*4);i++)
-                br.readLine();
-            sb.append(br.readLine());
-            questionTitle = sb.toString();
-            sb2.append(br.readLine());
-            answerText = sb2.toString().split(",");
-            sb3.append(br.readLine());
-            correct = sb3.toString();
-        }
-        question.setText(questionTitle);
-        answer1.setText(answerText[0]);
-        answer2.setText(answerText[1]);
-        answer3.setText(answerText[2]);
-        answer4.setText(answerText[3]);
+    public void displayQuestion(int day, boolean redo) throws IOException{
+        this.day = day;
+        this.redo = redo;
+        String[] trivia = Trivia.getTrivia(day);
+        question.setText(trivia[0]);
+        answer1.setText(trivia[1]);
+        answer2.setText(trivia[2]);
+        answer3.setText(trivia[3]);
+        answer4.setText(trivia[4]);
+        correct = trivia[5];
     }
     
     public void AnswerMechanism(ActionEvent event){
         Object source = event.getSource();
         Button answerButton = (Button)source;
         String answer = answerButton.getText();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        User u = (User) stage.getUserData();
         if (!answer.equals(correct))
             if (attempts ==0){
                 correctAnswer.setText(correct);
                 deathScreen.setVisible(true);
+                Trivia.completeTrivia(u, points, day, redo);
             }else
                 WrongOption();
-        else
-            CorrectOption();
+        else{
+            points = (attempts==0) ? 1 : 2;
+            Trivia.completeTrivia(u, points, day, redo);
+            if (redo)
+                pointsMessage.setText("(No points are awarded, as this is a replay)");
+            else
+                pointsMessage.setText("You have been awarded "+points+" points, you now have "+u.getPoints()+" points.");
+            correctScreen.setVisible(true);
+        }
     }
     
     public void WrongOption(){
@@ -86,8 +88,8 @@ public class TriviaController {
        int[] xcoord = {70,362,70,362};
        int[] ycoord = {162,162,290,290};
        int[] indices = {0,1,2,3};
-       for(int i = 0; i<answerText.length;i++){
-           int randomIndex = g.nextInt(answerText.length);
+       for(int i = 0; i<4;i++){
+           int randomIndex = g.nextInt(4);
            int temp = indices[randomIndex];
            indices[randomIndex] = indices[i];
            indices[i] = temp;
@@ -109,9 +111,6 @@ public class TriviaController {
     );
     timeline.setCycleCount(1);
     timeline.play();
-    }
-    public void CorrectOption(){
-        correctScreen.setVisible(true);
     }
     
     public void switchToMainpage(ActionEvent event) throws IOException{

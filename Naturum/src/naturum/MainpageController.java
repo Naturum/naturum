@@ -29,16 +29,13 @@ public class MainpageController {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToTrivia(ActionEvent event) throws IOException{
-        //Parent root = FXMLLoader.load(getClass().getResource("trivia.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("trivia.fxml"));
+    public void switchToTriviaMenu(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("triviaMenu.fxml"));
         root = loader.load();
-        
-        TriviaController triviaController = loader.getController();
-        triviaController.displayQuestion();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 }
