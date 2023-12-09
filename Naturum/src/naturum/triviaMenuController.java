@@ -6,10 +6,12 @@ package naturum;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -20,6 +22,14 @@ public class triviaMenuController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    int day;
+    
+    @FXML Button triviaButton;
+    
+    public void init(boolean check, int day){
+        triviaButton.setDisable(check);
+        this.day = day;
+    }
     
     public void switchToMainpage(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("mainpage.fxml"));
@@ -35,7 +45,7 @@ public class triviaMenuController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         User u = (User) stage.getUserData();
         triviaRecordController triviaRecordCon = loader.getController();
-        triviaRecordCon.unlockRecord(u.getIdUser());
+        triviaRecordCon.unlockRecord(u.getIdUser(), day);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -45,7 +55,7 @@ public class triviaMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("trivia.fxml"));
         root = loader.load();
         TriviaController triviaController = loader.getController();
-        triviaController.displayQuestion(1, false);
+        triviaController.displayQuestion(day, false);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

@@ -10,6 +10,8 @@ import java.sql.*;
  *
  * @author Ryan Chin
  */
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 public class SQLController {
     private static Connection con;
@@ -24,18 +26,14 @@ public class SQLController {
     }
     
     public static ArrayList getTriviaRecord(Connection con, int iduser){
-        ArrayList<ArrayList<Integer>> trivia = new ArrayList<>();
-        trivia.add(new ArrayList<>());
-        trivia.add(new ArrayList<>());
+        ArrayList<Integer> trivia = new ArrayList<>();
         try{ 
-            PreparedStatement stmt = con.prepareStatement("select trivia, status from trivia where iduser=?");
+            PreparedStatement stmt = con.prepareStatement("select trivia from trivia where iduser=?");
             stmt.setInt(1, iduser);
             ResultSet rs = stmt.executeQuery();
             int i=0;
             while (rs.next()){
-                trivia.get(0).add(rs.getInt("trivia"));
-                trivia.get(1).add(rs.getInt("status"));
-                i++;
+                trivia.add(rs.getInt("trivia"));
             }
             con.close();
         } catch (SQLException e) {
@@ -85,5 +83,21 @@ public class SQLController {
         } catch (SQLException e) {
             System.out.println("Error while connecting to the database");
         }
+    }
+    
+    public static boolean checkDailyTrivia(Connection con, int iduser, int day){
+        boolean check=false;
+        try{
+            PreparedStatement stmt = con.prepareStatement("select idtrivia from trivia where idUser=? and trivia=?");
+            stmt.setInt(1, iduser);
+            stmt.setInt(2, day);
+            ResultSet rs = stmt.executeQuery();
+            check = rs.isBeforeFirst();
+            con.close();
+            
+        } catch (SQLException e) {
+            System.out.println("Error while connecting to the database");
+        }
+        return check;
     }
 }

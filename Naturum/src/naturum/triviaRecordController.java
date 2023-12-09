@@ -22,29 +22,36 @@ import javafx.fxml.FXMLLoader;
  * @author Ryan Chin
  */
 public class triviaRecordController {
-    @FXML Button day1, day2, day3, day4, day5, day6, day7, day8, day9, day10;
     @FXML AnchorPane buttonGroup;
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void unlockRecord(int iduser){
+    public void unlockRecord(int iduser, int day){
         Connection con = SQLController.getConnection();
-        ArrayList<ArrayList<Integer>> trivia = SQLController.getTriviaRecord(con, iduser);
-        int i = 1;
+        ArrayList<Integer> trivia = SQLController.getTriviaRecord(con, iduser);
+        int i =1;
         for (Node node : buttonGroup.getChildren()){
-            if (trivia.get(0).contains(i)){
+            if (i<day){
                 ((Button) node).setDisable(false);
-                if (trivia.get(1).get(i-1)==0){
+                if (trivia.contains(i)){
+                    ((Button) node).setOnAction(e -> {try {
+                        switchToReplay(e);
+                    } catch (IOException ex) {System.out.println(ex);}
+                });
+                } else{
                     ((Button) node).setStyle("-fx-background-color: #d6c051");
                     ((Button) node).setOnAction(e -> {try {
                         switchToTrivia(e);
                     } catch (IOException ex) {System.out.println(ex);}
-                });
-                }else{
+                        });
+                    }
+            } else if (i==day){
+                if (trivia.contains(i)){
+                    ((Button) node).setDisable(false);
                     ((Button) node).setOnAction(e -> {try {
                         switchToReplay(e);
                     } catch (IOException ex) {System.out.println(ex);}
-});
+                });
                 }
             }
             i++;

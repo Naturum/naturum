@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="naturum.triviaMenuController">
    <children>
       <Button layoutX="214.0" layoutY="305.0" mnemonicParsing="false" onAction="#switchToTriviaRecord" prefHeight="45.0" prefWidth="171.0" text="Retry Previous Trivias" />
-      <Button layoutX="214.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToTrivia" prefHeight="45.0" prefWidth="171.0" text="Answer Today's Trivia!" />
+      <Button fx:id="triviaButton" layoutX="214.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToTrivia" prefHeight="45.0" prefWidth="171.0" text="Answer Today's Trivia!" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/quiz_icon.png" />

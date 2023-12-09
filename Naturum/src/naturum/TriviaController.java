@@ -8,8 +8,6 @@ package naturum;
  *
  * @author Ryan Chin
  */
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -38,7 +36,6 @@ public class TriviaController {
     @FXML ProgressBar cooldown;
     
     private final Random g = new Random();
-    private String[] answerText;
     
     private int attempts = 1;
     private int day;

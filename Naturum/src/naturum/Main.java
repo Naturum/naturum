@@ -3,13 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package naturum;   
+import java.time.LocalDate;
 import javafx.application.Application;   
 import javafx.fxml.FXMLLoader;  
 import javafx.stage.Stage;  
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import java.sql.*;
-import java.util.HashSet;
 public class Main extends Application{  
   
     @Override  
@@ -19,6 +18,7 @@ public class Main extends Application{
         
         User user = new User();
         user.setIdUser(1);
+        user.setRegDate(LocalDate.of(2023, 12, 3));
         primaryStage.setUserData(user);
         
         primaryStage.setTitle("NaturUM");  
