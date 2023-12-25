@@ -36,9 +36,13 @@ public class RegisterController implements Initializable {
     @FXML
     private Button button_login;
     @FXML 
+    private TextField tf_email;
+    @FXML 
     private TextField tf_username;
     @FXML
     private TextField tf_password;
+    @FXML 
+    private TextField tf_password1;
     
 
     
@@ -47,13 +51,13 @@ public class RegisterController implements Initializable {
     }    
     
     public void signUp1 (ActionEvent event){
-        if (!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty()){
-            MySQLController.signUpUser(event, tf_username.getText(), tf_password.getText());
+        if (!tf_email.getText().trim().isEmpty() && !tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty() && !tf_password1.getText().trim().isEmpty()){
+            MySQLController.signUpUser(event, tf_email.getText(), tf_username.getText(), tf_password.getText(),tf_password1.getText());
         }
         else {
             System.out.println("Please fill in all information!");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please fill in username and password to signup!");
+            alert.setContentText("Please fill in all information to signup!");
             alert.show();
         }
     }

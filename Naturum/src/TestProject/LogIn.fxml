@@ -37,7 +37,7 @@
                   <Image url="@Lock2.png" />
                </image>
             </ImageView>
-            <Label layoutX="36.0" layoutY="188.0" text="Username:">
+            <Label layoutX="66.0" layoutY="188.0" text="Email :">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_username" layoutX="137.0" layoutY="183.0" promptText="Enter your username">
+            <TextField fx:id="tf_email" layoutX="137.0" layoutY="183.0" promptText="Enter your email">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>

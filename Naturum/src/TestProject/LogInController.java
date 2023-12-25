@@ -37,7 +37,7 @@ public class LogInController implements Initializable {
     private Button button_signup;
     
     @FXML
-    private TextField tf_username;
+    private TextField tf_email;
     
     @FXML
     private TextField tf_password;
@@ -47,7 +47,7 @@ public class LogInController implements Initializable {
     }    
     
     public void logIn (ActionEvent event){
-        MySQLController.logInUser(event, tf_username.getText(), tf_password.getText());
+        MySQLController.logInUser(event, tf_email.getText(), tf_password.getText());
     }
     
     public void signUp (ActionEvent event){
