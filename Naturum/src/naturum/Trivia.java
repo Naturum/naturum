@@ -6,6 +6,7 @@ package naturum;
 
 import java.sql.*;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -36,7 +37,9 @@ public class Trivia {
             }
             sb3.append(br.readLine());
             trivia[5] = sb3.toString();
-        } 
+        }catch (FileNotFoundException e){
+            System.out.println("File not found.");
+        }
         return trivia;
     }
     

@@ -18,7 +18,7 @@ public class Main extends Application{
         
         User user = new User();
         user.setIdUser(1);
-        user.setRegDate(LocalDate.of(2023, 12, 3));
+        user.setRegDate(LocalDate.of(2023, 12, 22));
         primaryStage.setUserData(user);
         
         primaryStage.setTitle("NaturUM");  
