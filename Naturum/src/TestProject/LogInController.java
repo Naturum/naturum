@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.ButtonBase;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
@@ -31,27 +32,32 @@ public class LogInController implements Initializable {
     private Parent root;
     
     @FXML 
-    private Button button_login;
+    private Button button_login1;
     
     @FXML
-    private Button button_signup;
+    public Button button_signup1;
     
     @FXML
     private TextField tf_email;
     
     @FXML
     private TextField tf_password;
+    
+    @FXML
+    private HBox hbox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
     
     public void logIn (ActionEvent event){
-        MySQLController.logInUser(event, tf_email.getText(), tf_password.getText());
+        MySQLController mysqlcontroller = new MySQLController();
+        mysqlcontroller.logInUser(event, tf_email.getText(), tf_password.getText());
     }
     
     public void signUp (ActionEvent event){
-        MySQLController.changeScene(event, "Register.fxml", "Sign Up", null);
+        MySQLController mysqlcontroller = new MySQLController();
+        mysqlcontroller.changeScene(event, "Register.fxml", "Sign Up", null, button_signup1);
     }
     
 //    public void switchToLoggedIn (ActionEvent e) throws IOException{

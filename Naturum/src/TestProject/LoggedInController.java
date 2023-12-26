@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class LoggedInController implements Initializable {
 
 @FXML
-private Button button_logout;
+public Button button_logout;
 @FXML
 private Label label_welcome;
 
@@ -42,7 +42,8 @@ private Parent root;
         button_logout.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                MySQLController.changeScene(event, "LogIn.fxml", "Log In!", null);
+                MySQLController mysqlcontroller = new MySQLController();
+                mysqlcontroller.changeScene(event, "LogIn.fxml", "Log In!", null, button_logout );
             }
             
         });

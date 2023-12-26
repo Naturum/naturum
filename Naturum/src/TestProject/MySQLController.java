@@ -18,6 +18,7 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Base64;
 import static java.util.Objects.hash;
@@ -25,15 +26,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+//import javafx.util.Duration;
+
 
 
 public class MySQLController {
@@ -53,7 +65,7 @@ public class MySQLController {
 //        }
 //    }
     
-    public static void changeScene(ActionEvent event, String fxmlfile, String title, String username){
+    public void changeScene(ActionEvent event, String fxmlfile, String title, String username, Button button){
         Parent root = null;
         
         if (username != null){
@@ -62,24 +74,53 @@ public class MySQLController {
                 root = loader.load();
                 LoggedInController loggedincontroller = loader.getController();
                 loggedincontroller.setUserInfo(username);
+                
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setTitle(title);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             } catch (IOException e){
                 e.printStackTrace();
             }
         } else{
             try{
-                root = FXMLLoader.load(MySQLController.class.getResource(fxmlfile));
+                Parent root1 = FXMLLoader.load(MySQLController.class.getResource(fxmlfile));
+                scene = button.getScene();
+                if (fxmlfile.equals("Register.fxml")){
+                    root1.translateXProperty().set(scene.getWidth());
+                }
+                else{
+                    root1.translateXProperty().set(-scene.getWidth());
+                }
+
+                Node oldRoot = scene.getRoot();
+                StackPane stackPane = new StackPane(oldRoot, root1);
+                scene.setRoot(stackPane);
+//                scene.setRoot(root1);
+                
+                Timeline timeline = new Timeline();
+                KeyValue kv = new KeyValue(root1.translateXProperty(), 0, Interpolator.EASE_IN);
+                KeyFrame kf = new KeyFrame(javafx.util.Duration.seconds(0.5),kv);
+                timeline.getKeyFrames().add(kf);
+                timeline.setOnFinished(event1 -> {
+                    stackPane.getChildren().remove(oldRoot);
+//                    ((Group) scene.getRoot()).getChildren().remove(oldRoot);
+                });
+                timeline.play();
+                
             } catch (IOException e){
                 e.printStackTrace();
             }
         }
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+//        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        stage.setTitle(title);
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
     }
     
-    public static void logInUser(ActionEvent event, String email, String password){
+    public void logInUser(ActionEvent event, String email, String password){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -119,7 +160,7 @@ public class MySQLController {
 //                    String storePassword = sb.toString();
                     
                     int iterations = 100000;
-                    int keyLength = 64;
+                    int keyLength = 256;
                     String algorithm = "PBKDF2WithHmacSHA256";
                     PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keyLength);
                     SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
@@ -138,7 +179,7 @@ public class MySQLController {
                         rs = ps.executeQuery();
                         rs.next();
                         String username = rs.getString("username");
-                        changeScene(event, "loggedIn.fxml", "Main Page", username);
+                        changeScene(event, "loggedIn.fxml", "Main Page", username,null);
                     } else {
                         System.out.println("Password did not match.");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -180,7 +221,7 @@ public class MySQLController {
         }
     }
     
-    public static void signUpUser(ActionEvent event, String email, String username, String password, String password1){
+    public void signUpUser(ActionEvent event, String email, String username, String password, String password1){
         Connection con = null;
         PreparedStatement psCheckUserExist = null;
         PreparedStatement psInsert = null;
@@ -224,7 +265,7 @@ public class MySQLController {
                 random.nextBytes(salt);
 //                InputStream saltStream = new ByteArrayInputStream(salt);
                 int iterations = 100000;
-                int keyLength = 64;
+                int keyLength = 256;
                 String algorithm = "PBKDF2WithHmacSHA256";
                 PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keyLength);
                 SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
@@ -258,7 +299,7 @@ public class MySQLController {
                 psInsert.setInt(8, 0);
                 psInsert.executeUpdate();
            
-                changeScene(event, "loggedIn.fxml", "Main Page", username);
+                changeScene(event, "loggedIn.fxml", "Main Page", username,null);
             }
         } catch (SQLException e){
             e.printStackTrace();

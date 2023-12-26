@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TestProject.LogInController">
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TestProject.LogInController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="228.0" style="-fx-background-color: #F0EDCE;">
          <children>
@@ -57,7 +57,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="button_login" layoutX="132.0" layoutY="288.0" mnemonicParsing="false" onAction="#logIn" prefHeight="31.0" prefWidth="119.0" style="-fx-background-color: #FFFACD; -fx-cursor: hand;" text="Login">
+            <Button fx:id="button_login1" layoutX="132.0" layoutY="288.0" mnemonicParsing="false" onAction="#logIn" prefHeight="31.0" prefWidth="119.0" style="-fx-background-color: #FFFACD; -fx-cursor: hand;" text="Login">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="button_signup" layoutX="195.0" layoutY="339.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign Up!" textFill="#ff7700" underline="true">
+            <Button fx:id="button_signup1" layoutX="195.0" layoutY="339.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign Up!" textFill="#ff7700" underline="true">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
