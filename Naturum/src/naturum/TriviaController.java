@@ -9,6 +9,9 @@ package naturum;
  * @author Ryan Chin
  */
 import java.io.IOException;
+import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
@@ -110,12 +113,20 @@ public class TriviaController {
     timeline.play();
     }
     
-    public void switchToMainpage(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("mainpage.fxml"));
+    public void switchToTriviaMenu(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("triviaMenu.fxml"));
+        root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 800, 600);
+        User u = (User) stage.getUserData();
+        LocalDate now = LocalDate.now();
+        day = (int) ChronoUnit.DAYS.between(u.getRegDate(), now) + 1;
+        Connection con = SQLController.getConnection();
+        triviaMenuController triviaMenuCon = loader.getController();
+        triviaMenuCon.init(SQLController.checkDailyTrivia(con, u.getIdUser(), day), day);
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
     
 }

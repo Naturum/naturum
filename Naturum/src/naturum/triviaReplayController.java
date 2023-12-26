@@ -40,9 +40,9 @@ public class triviaReplayController {
     @FXML ProgressBar cooldown, correctCD;
     @FXML CheckBox answerToggle;
     
-    private int day;
+    int day;
+    private int recordDay;
     private final Random g = new Random();
-    private String[] answerText;
     private ArrayList<Integer> days = new ArrayList<>();
     
     private String correct;
@@ -53,9 +53,9 @@ public class triviaReplayController {
     }
     
     public void displayQuestion(int day) throws IOException{
-        dayTitle.setText("Day "+day);
-        this.day = day;
-        String[] trivia = Trivia.getTrivia(day);
+        this.recordDay = day;
+        dayTitle.setText("Day "+recordDay);
+        String[] trivia = Trivia.getTrivia(recordDay);
         question.setText(trivia[0]);
         answer1.setText(trivia[1]);
         answer2.setText(trivia[2]);
@@ -74,6 +74,20 @@ public class triviaReplayController {
             CorrectOption();
     }
     
+    public void switchToTriviaRecord(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("triviaRecord.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        User u = (User) stage.getUserData();
+        triviaRecordController triviaRecordCon = loader.getController();
+        triviaRecordCon.day = day;
+        triviaRecordCon.unlockRecord(u.getIdUser());
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     public void showAnswers(ActionEvent event){
         if(answerToggle.isSelected()){
             for (Node node : answerButtons.getChildren()){
@@ -84,13 +98,13 @@ public class triviaReplayController {
         } else{
             for (Node node : answerButtons.getChildren()){
                 ((Button)node).setDisable(false);
-                ((Button)node).setStyle(null);
+                ((Button)node).setStyle("-fx-background-color:  #FFFACD");
             }
         }
     }
     
     public void nextQuestion(ActionEvent event) throws IOException{
-        for (int i=day+1; i<=11; i++){
+        for (int i=recordDay+1; i<=11; i++){
             if (days.contains(i)){
                 displayQuestion(i);
                 break;
@@ -100,7 +114,7 @@ public class triviaReplayController {
     }
     
     public void previousQuestion(ActionEvent event) throws IOException{
-        for (int i= day-1; i>=0; i--){
+        for (int i= recordDay-1; i>=0; i--){
             if (days.contains(i)){
                 displayQuestion(i);
                 break;
@@ -150,16 +164,6 @@ public class triviaReplayController {
         );
         timeline.setCycleCount(1);
         timeline.play();
-    }
-    
-    public void switchToTriviaMenu(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("triviaMenu.fxml"));
-        root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
     }
     
 }

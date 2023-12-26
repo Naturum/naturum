@@ -16,7 +16,6 @@ import java.io.IOException;
 public class Trivia {
     private static String[] trivia = new String[6];
     private static int day;
-    private static int status;
     
     public static String[] getTrivia(int day) throws IOException{
         try(BufferedReader br = new BufferedReader(new FileReader("./TriviaSample.txt"))){
@@ -37,17 +36,17 @@ public class Trivia {
             }
             sb3.append(br.readLine());
             trivia[5] = sb3.toString();
-        }
+        } 
         return trivia;
     }
     
     public static void completeTrivia(User user, int points, int day, boolean redo){
         Connection con = SQLController.getConnection();
         if (redo)
-            SQLController.updateRecord(con, user.getIdUser(), day);
+            SQLController.insertRecord(con, user.getIdUser(), day);
         else{
             user.addPoints(points);
-            SQLController.insertRecord(con, user.getIdUser(), day, 1);
+            SQLController.insertRecord(con, user.getIdUser(), day);
         }
     }
     

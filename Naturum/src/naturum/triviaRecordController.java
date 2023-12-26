@@ -6,6 +6,8 @@ package naturum;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +28,9 @@ public class triviaRecordController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void unlockRecord(int iduser, int day){
+    
+    int day;
+    public void unlockRecord(int iduser){
         Connection con = SQLController.getConnection();
         ArrayList<Integer> trivia = SQLController.getTriviaRecord(con, iduser);
         int i =1;
@@ -34,12 +38,13 @@ public class triviaRecordController {
             if (i<day){
                 ((Button) node).setDisable(false);
                 if (trivia.contains(i)){
+                    ((Button) node).setStyle("-fx-background-color:  #FFFACD");
                     ((Button) node).setOnAction(e -> {try {
                         switchToReplay(e);
                     } catch (IOException ex) {System.out.println(ex);}
                 });
                 } else{
-                    ((Button) node).setStyle("-fx-background-color: #d6c051");
+                    ((Button) node).setStyle("-fx-background-color:  #F5AB39");
                     ((Button) node).setOnAction(e -> {try {
                         switchToTrivia(e);
                     } catch (IOException ex) {System.out.println(ex);}
@@ -47,6 +52,7 @@ public class triviaRecordController {
                     }
             } else if (i==day){
                 if (trivia.contains(i)){
+                    ((Button) node).setStyle("-fx-background-color:  #FFFACD");
                     ((Button) node).setDisable(false);
                     ((Button) node).setOnAction(e -> {try {
                         switchToReplay(e);
@@ -68,8 +74,8 @@ public class triviaRecordController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
         User u = (User) stage.getUserData();
         triviaReplayController triviaReplayCon = loader.getController();
+        triviaReplayCon.day = this.day;
         triviaReplayCon.initQuestion(day, u.getIdUser());
-        
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -89,6 +95,22 @@ public class triviaRecordController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void switchToTriviaMenu(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("triviaMenu.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        User u = (User) stage.getUserData();
+        LocalDate now = LocalDate.now();
+        day = (int) ChronoUnit.DAYS.between(u.getRegDate(), now) + 1;
+        Connection con = SQLController.getConnection();
+        triviaMenuController triviaMenuCon = loader.getController();
+        triviaMenuCon.init(SQLController.checkDailyTrivia(con, u.getIdUser(), day), day);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
     
 }

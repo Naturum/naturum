@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -25,9 +26,11 @@ public class triviaMenuController {
     int day;
     
     @FXML Button triviaButton;
+    @FXML Label doneMessage;
     
     public void init(boolean check, int day){
         triviaButton.setDisable(check);
+        doneMessage.setVisible(check);
         this.day = day;
     }
     
@@ -45,7 +48,9 @@ public class triviaMenuController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         User u = (User) stage.getUserData();
         triviaRecordController triviaRecordCon = loader.getController();
-        triviaRecordCon.unlockRecord(u.getIdUser(), day);
+        triviaRecordCon.day = day;
+        triviaRecordCon.unlockRecord(u.getIdUser());
+
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
