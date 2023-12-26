@@ -8,7 +8,9 @@ package TestProject;
  *
  * @author johnong04
  */
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -18,6 +20,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Base64;
+import static java.util.Objects.hash;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -96,11 +99,18 @@ public class MySQLController {
             }
             else{
                 while(rs.next()){
-                    String salt1 = rs.getString("saltString");
-                    byte[] salt = Base64.getDecoder().decode(salt1);
-                    
-                    String storedPassword1 = rs.getString("password");
-                    byte[] storedPassword = Base64.getDecoder().decode(storedPassword1);
+//                    String salt1 = rs.getString("saltString");
+//                    byte[] salt = Base64.getDecoder().decode(salt1);
+                    byte[] salt = rs.getBytes("saltString");
+                    byte[] hash = rs.getBytes("password");
+//                      InputStream hashStream = rs.getBinaryStream("password");
+//                      byte[] hash = new byte[64];
+//                      hashStream.read(hash);
+//                      InputStream saltStream = rs.getBinaryStream("saltString");
+//                      byte[] salt = new byte[16];
+//                      hashStream.read(salt);
+//                    String storedPassword1 = rs.getString("password");
+//                    byte[] storedPassword = Base64.getDecoder().decode(storedPassword1);
 //                    String storePassword = Base64.getEncoder().encodeToString(storedPassword);
 //                    StringBuilder sb = new StringBuilder();
 //                    for (byte b : storedPassword) {
@@ -113,7 +123,7 @@ public class MySQLController {
                     String algorithm = "PBKDF2WithHmacSHA256";
                     PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keyLength);
                     SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
-                    byte[] hashPassword = factory.generateSecret(spec).getEncoded();
+                    byte[] testPassword = factory.generateSecret(spec).getEncoded();
 //                    String hashedPassword = Base64.getEncoder().encodeToString(hashPassword);
 //                    for (byte b : hashPassword) {
 //                        sb.append(String.format("%02x", b));
@@ -122,7 +132,7 @@ public class MySQLController {
 
                         
 
-                    if (Arrays.equals(hashPassword, storedPassword)){
+                    if (Arrays.equals(testPassword, hash)){
                         ps = con.prepareStatement("SELECT username FROM users WHERE email = ?");
                         ps.setString(1, email);
                         rs = ps.executeQuery();
@@ -183,7 +193,7 @@ public class MySQLController {
             psCheckUserExist.setString(1, username);
             resultSet = psCheckUserExist.executeQuery();
             
-            String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+            String regex = "^[a-zA-Z0-9_.-]+@(gmail\\.com|yahoo\\.com|hotmail\\.com|outlook\\.com)$";
             Pattern pattern = Pattern.compile (regex);
             Matcher matcher = pattern.matcher (email);
             
@@ -212,14 +222,16 @@ public class MySQLController {
                 SecureRandom random = new SecureRandom();
                 byte[] salt = new byte[16];
                 random.nextBytes(salt);
+//                InputStream saltStream = new ByteArrayInputStream(salt);
                 int iterations = 100000;
                 int keyLength = 64;
                 String algorithm = "PBKDF2WithHmacSHA256";
                 PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keyLength);
                 SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
                 byte[] hash = factory.generateSecret(spec).getEncoded();
-                String hexHash = Base64.getEncoder().encodeToString(hash);
-                String saltString = Base64.getEncoder().encodeToString(salt);
+//                InputStream hashStream = new ByteArrayInputStream(hash);
+//                String hexHash = Base64.getEncoder().encodeToString(hash);
+//                String saltString = Base64.getEncoder().encodeToString(salt);
 //                StringBuilder sb = new StringBuilder();
 //                for (byte b : hash) {
 //                sb.append(String.format("%02x", b));
@@ -237,8 +249,8 @@ public class MySQLController {
                 
                 psInsert = con.prepareStatement("INSERT INTO users (username, password, saltString, email, regDate, logInDate, point, xp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 psInsert.setString(1, username);
-                psInsert.setString(2, hexHash);
-                psInsert.setString(3, saltString);
+                psInsert.setBytes(2, hash);
+                psInsert.setBytes(3, salt);
                 psInsert.setString(4, email);
                 psInsert.setDate(5, new java.sql.Date(System.currentTimeMillis()));
                 psInsert.setDate(6, new java.sql.Date(System.currentTimeMillis()));
