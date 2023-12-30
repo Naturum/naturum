@@ -13,7 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import naturum.User;
+import Login.User;
+import java.io.IOException;
 
 /**
  *
@@ -48,12 +49,13 @@ public class PointShopController {
         stage.show();        
     }
     
-    public void backToMainPage(ActionEvent e) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("PointShop_page.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+    public void switchToMain(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/LoggedIn.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();      
+        stage.show();
     }
     
     public void confirm(ActionEvent e) throws Exception {
