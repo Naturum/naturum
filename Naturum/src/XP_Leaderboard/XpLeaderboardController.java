@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package XP_Leaderboard;
+import Login.LoginSQLController;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -31,7 +32,11 @@ public class XpLeaderboardController {
     private Scene scene;
     private Parent root;
     
-    public void displayLeaderboard() throws SQLException {
+    public void displayLeaderboard(User u) throws SQLException {
+        if (u!=null){
+            LoginSQLController sc = new LoginSQLController();
+            sc.updateUser(u);
+        }
         XpLeaderboard leaderboard = new XpLeaderboard();
         leaderboard.openConnection();
         List<User> users = leaderboard.getUsernameXP();
@@ -39,7 +44,7 @@ public class XpLeaderboardController {
         StringBuilder formattedText2 = new StringBuilder();
         for (int i = 0; i < users.size(); i++) {
             formattedText.append(String.format("%d. %s\n", i+1, users.get(i).getUsername()));
-            formattedText2.append(String.format("%25d\n", users.get(i).getXP()));
+            formattedText2.append(String.format("%d\n", users.get(i).getXP()));
         }
         textArea.setText(formattedText.toString());
         textArea2.setText(formattedText2.toString());

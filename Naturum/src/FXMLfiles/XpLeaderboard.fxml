@@ -26,7 +26,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextArea>
-      <TextField editable="false" layoutX="48.0" layoutY="123.0" prefHeight="31.0" prefWidth="334.0" style="-fx-background-color: #FFFACD;" text="USERNAME                                                   XP">
+      <TextField editable="false" layoutX="48.0" layoutY="123.0" prefHeight="31.0" prefWidth="334.0" style="-fx-background-color: #FFFACD;" text="USERNAME                                             XP">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>

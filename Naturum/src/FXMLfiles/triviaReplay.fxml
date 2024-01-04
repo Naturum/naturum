@@ -31,9 +31,9 @@
          <font>
             <Font name="Tahoma Bold" size="24.0" />
          </font></Button>
-      <Label fx:id="dayTitle" layoutX="257.0" layoutY="8.0" text="Day 1">
+      <Label fx:id="dayTitle" layoutX="254.0" layoutY="8.0" prefHeight="53.0" prefWidth="95.0" text="Day 10">
          <font>
-            <Font size="36.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0edce" height="131.0" layoutY="66.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />

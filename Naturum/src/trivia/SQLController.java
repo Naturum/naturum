@@ -4,6 +4,7 @@
  */
 package trivia;
 
+import Login.LoginSQLController;
 import java.sql.*;
 
 /**
@@ -15,11 +16,13 @@ import java.util.*;
 //Class to manage all databse operations
 public class SQLController {
     private Connection con;
-    
+    private String dbName = LoginSQLController.dbName;
+    private String dbUsername = LoginSQLController.dbUsername;
+    private String dbPass = LoginSQLController.dbPass;
     //Establish connection with database
     public void openConnection(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/naturum", "root", "naturum");//Establishing connection
+            con = DriverManager.getConnection(dbName, dbUsername, dbPass);//Establishing connection
             System.out.println("Connected With the database successfully"); //Message after successful connection
         } catch (SQLException e){
             System.out.println("Error while connecting to the database"); //Message if something goes wrong while conneting to the database
@@ -60,7 +63,7 @@ public class SQLController {
     
     //Check if user has done trivia today or not
     public boolean checkDailyTrivia(int iduser, int day){
-        boolean check=false;
+        boolean check=true;
         if (day>10) //If day>10, there is no more trivias left. 
             return check;
         try{

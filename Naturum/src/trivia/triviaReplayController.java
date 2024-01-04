@@ -131,7 +131,7 @@ public class triviaReplayController {
                 displayQuestion(i);
                 break;
             }else if (i==0) //if counter already at minimum trivia, reset back to 0 and continue loop
-                i=10;
+                i=11;
         }
         
         

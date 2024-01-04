@@ -65,19 +65,23 @@ public class TriviaController {
         User u = (User) stage.getUserData();
         
         //If answer is wrong 
-        if (!trivia.answered(answer)) 
-            if (trivia.getAttempts() == 0){
-                correctAnswer.setText(correct);
+        if (!trivia.answered(answer)) {
+            if (trivia.getAttempts() <0){
+                correctAnswer.setText(trivia.getAnswer());
                 deathScreen.setVisible(true);
             }else
                 WrongOption();
         //If answer is correct
-        else{
+        }else{
             correctScreen.setVisible(true);
             if (trivia.getReplay()){
-                
+                pointsMessage.setText("This is a replay, no points are awarded.");
             } else{
-                pointsMessage.setText("You have been awarded 2 points, you now have " + u.getPoints() + " points.");
+                if (trivia.getAttempts()==1)
+                    pointsMessage.setText("You have been awarded 2 points, you now have " + u.getPoints() + " points.");
+                else{
+                    pointsMessage.setText("You have been awarded 1 point, you now have " + u.getPoints() + " points.");
+                }
             }
         }
     }

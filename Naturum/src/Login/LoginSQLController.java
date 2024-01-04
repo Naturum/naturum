@@ -23,13 +23,16 @@ import javafx.scene.control.Alert;
 
 
 public class LoginSQLController {
+    public static String dbName = "jdbc:mysql://localhost:3306/naturum";
+    public static String dbUsername = "root";
+    public static String dbPass = "naturum";
     public void logInUser(ActionEvent event, String email, String password){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/naturum", "root", "naturum");
+            con = DriverManager.getConnection(dbName, dbUsername, dbPass);
             ps = con.prepareStatement("SELECT password, saltString FROM users WHERE BINARY email = ?");
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -96,7 +99,7 @@ public class LoginSQLController {
         ResultSet resultSet = null;
         
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/naturum", "root", "naturum");
+            con = DriverManager.getConnection(dbName, dbUsername, dbPass);
             psCheckUserExist = con.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExist.setString(1, username);
             resultSet = psCheckUserExist.executeQuery();
@@ -131,15 +134,14 @@ public class LoginSQLController {
                 byte[] salt = hasher.getSalt();
                 byte[] hash = hasher.getHash();
                 
-                psInsert = con.prepareStatement("INSERT INTO users (username, password, saltString, email, regDate, logInDate, point, xp, xpLastUpdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, now())");
+                psInsert = con.prepareStatement("INSERT INTO users (username, password, saltString, email, regDate, point, xp, xpLastUpdate) VALUES (?, ?, ?, ?, ?, ?, ?, now())");
                 psInsert.setString(1, username);
                 psInsert.setBytes(2, hash);
                 psInsert.setBytes(3, salt);
                 psInsert.setString(4, email);
                 psInsert.setDate(5, new java.sql.Date(System.currentTimeMillis()));
-                psInsert.setDate(6, new java.sql.Date(System.currentTimeMillis()));
+                psInsert.setInt(6, 0);
                 psInsert.setInt(7, 0);
-                psInsert.setInt(8, 0);
                 psInsert.executeUpdate();
            
                 SceneManager.changeScene(event, "/FXMLfiles/loggedIn.fxml", "Main Page", username,null, userCreation(email));
@@ -184,7 +186,7 @@ public class LoginSQLController {
         ResultSet rs = null;
         
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/naturum", "root", "naturum");
+            con = DriverManager.getConnection(dbName, dbUsername, dbPass);
             ps = con.prepareStatement("SELECT * FROM users WHERE BINARY email = ?");
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -193,7 +195,11 @@ public class LoginSQLController {
                 String username = rs.getString("username");
                 byte[] password = rs.getBytes("password");
                 LocalDate regDate = (rs.getDate("regDate")).toLocalDate();
-                LocalDate lastLoginDate = (rs.getDate("logInDate")).toLocalDate();
+                LocalDate lastLoginDate;
+                if (rs.getDate("logInDate")!=null)
+                    lastLoginDate = (rs.getDate("logInDate")).toLocalDate();
+                else
+                    lastLoginDate=null;
                 int point = rs.getInt("point");
                 int xp = rs.getInt("xp");
                 LocalDateTime xpLastUpdated = (rs.getTimestamp("xpLastUpdate")).toLocalDateTime();
@@ -233,9 +239,12 @@ public class LoginSQLController {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/naturum", "root", "naturum");
+            con = DriverManager.getConnection(dbName, dbUsername, dbPass);
             ps = con.prepareStatement("UPDATE users SET logInDate = ?, point = ?, xp = ?, xpLastUpdate = ? WHERE userid = ?");
-            ps.setDate(1, java.sql.Date.valueOf(u.getLastLoginDate()));
+            if (u.getLastLoginDate()!=null)
+                ps.setDate(1, java.sql.Date.valueOf(u.getLastLoginDate()));
+            else
+                ps.setNull(1, Types.NULL);
             ps.setInt(2, u.getPoints());
             ps.setInt(3, u.getXP());
             ps.setTimestamp(4, Timestamp.valueOf(u.getXpLastUpdate()));

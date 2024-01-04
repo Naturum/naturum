@@ -4,6 +4,7 @@
  */
 package XP_Leaderboard;
 
+import Login.LoginSQLController;
 import Login.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,7 @@ public class XpLeaderboard {
     private Connection con;
         public void openConnection(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/naturum", "root", "naturum");//Establishing connection
+            con = DriverManager.getConnection(LoginSQLController.dbName, LoginSQLController.dbUsername, LoginSQLController.dbPass);//Establishing connection
             System.out.println("Connected With the database successfully"); //Message after successful connection
         } catch (SQLException e) {
             System.out.println("Error while connecting to the database"); //Message if something goes wrong while conneting to the database

@@ -91,14 +91,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text layoutX="28.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Days in orange are missed days. You can redo it normally, but no points are rewarded." wrappingWidth="564.7926788330078">
-               <font>
-                  <Font name="Tahoma" size="12.0" />
-               </font>
-            </Text>
          </children>
       </AnchorPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0edce" height="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+      <Text layoutX="35.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Days in orange are missed days. You can redo it normally, but no points are rewarded." wrappingWidth="564.7926788330078">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+      </Text>
       <Button layoutX="25.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchToTriviaMenu" style="-fx-background-color: #FFFFE0;" text="Back">
          <font>
             <Font name="Tahoma" size="14.0" />

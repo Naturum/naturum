@@ -67,6 +67,10 @@ public class Trivia {
         return this.options;
     }
     
+    public String getAnswer(){
+        return answer;
+    }
+    
     public int getDay(){
         return this.day;
     }

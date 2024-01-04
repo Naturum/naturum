@@ -15,7 +15,7 @@ public class PointShopWriter {
     public void WriteToMerchandiseOrder(String username, int purchaseNum, String merchandise, String address) {
         try {
             FileWriter myWriter = new FileWriter("MerchandiseOrder.txt", true);
-            myWriter.write(username + " orders " + purchaseNum + " " + merchandise + " to " + address);
+            myWriter.write(username + " orders " + purchaseNum + " " + merchandise + " to " + address + "\n");
             myWriter.close();
             System.out.println("Successfully wrote to MerchandiseOrder file");
         }
@@ -28,7 +28,7 @@ public class PointShopWriter {
     public void WriteToTreePlantOrder(String username, String name) {
         try {
             FileWriter myWriter = new FileWriter("TreePlantOrder.txt", true);
-            myWriter.write(username + " plants a tree with the name \"" + name + "\"");
+            myWriter.write(username + " plants a tree with the name \"" + name + "\"\n");
             myWriter.close();
             System.out.println("Successfully wrote to TreePlantOrder.txt");
         }

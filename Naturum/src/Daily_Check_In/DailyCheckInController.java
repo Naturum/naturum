@@ -35,7 +35,7 @@ public class DailyCheckInController {
         System.out.println("Point before check in : " + u.getPoints());
         System.out.println("Last login date is " + u.getLastLoginDate());
         
-        if (!(u.getLastLoginDate()).isEqual(today)) {
+        if (!(java.util.Objects.equals(u.getLastLoginDate(), today))) {
             u.setLastLoginDate(today);
             u.addPoints(1);
             u.addXP(1);

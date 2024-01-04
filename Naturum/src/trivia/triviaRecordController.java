@@ -77,7 +77,7 @@ public class triviaRecordController {
     public void switchToReplay(ActionEvent event) throws IOException{
         Object source = event.getSource();
         Button dayButton = (Button)source;
-        int day = Character.getNumericValue(dayButton.getText().charAt(4)); //Get the specific trivia based on the button user pressed
+        int day = Integer.parseInt(dayButton.getText().substring(4)); //Get the specific trivia based on the button user pressed
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/triviaReplay.fxml"));
         root = loader.load();
@@ -97,7 +97,7 @@ public class triviaRecordController {
     public void switchToTrivia(ActionEvent event) throws IOException{
         Object source = event.getSource();
         Button dayButton = (Button)source;
-        int day = Character.getNumericValue(dayButton.getText().charAt(4)); //Get the specific trivia based on the button user pressed
+        int day = Integer.parseInt(dayButton.getText().substring(4)); //Get the specific trivia based on the button user pressed
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/trivia.fxml"));
         root = loader.load();

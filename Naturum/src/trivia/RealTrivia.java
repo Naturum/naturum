@@ -40,7 +40,12 @@ public class RealTrivia extends Trivia{
         SQLController sc = new SQLController();
         if (super.checkAnswer(answer)){ //Call superclass method to check if answer is correct or not
             if (!replay){ //If this trivia is not a replay, then award points
-                int points = (attempts==0) ? 1 : 2; //points awarded based on remaining attempts
+                int points;
+                //points awarded based on remaining attempts
+                if (attempts==1)
+                    points = 2;
+                else
+                    points = 1;
                 u.addPoints(points);
                 u.addXP(points);
                 u.setXpLastUpdate(LocalDateTime.now());
@@ -50,6 +55,8 @@ public class RealTrivia extends Trivia{
             return true;
         } else{
             if (this.attempts==0){ //If user run out of attempts, record that user has completed trivia, no points awarded
+                attempts-=1;
+                sc.openConnection();
                 sc.insertRecord(u.getIdUser(), super.getDay());
             } else{ //otherwise, reduce attempts and let user keep going
                 attempts-=1;

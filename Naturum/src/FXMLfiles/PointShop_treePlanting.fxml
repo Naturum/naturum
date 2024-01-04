@@ -14,7 +14,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7c580" height="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
-      <Label layoutX="207.0" layoutY="32.0" prefHeight="50.0" prefWidth="211.0" text="Tree Planting ">
+      <Label layoutX="207.0" layoutY="21.0" prefHeight="50.0" prefWidth="211.0" text="Tree Planting ">
          <font>
             <Font name="Garamond Bold" size="34.0" />
          </font>
@@ -78,14 +78,19 @@
             <Image url="@../assets/flower%20pot%203.png" />
          </image>
       </ImageView>
-      <Label layoutX="207.0" layoutY="225.0" text="&quot; Nurture the Nature &quot;">
+      <Label layoutX="207.0" layoutY="225.0" text="&quot; Nurture the Nature ">
          <font>
             <Font name="Tahoma" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="225.0" layoutY="251.0" text="Secure our Future">
+      <Label layoutX="225.0" layoutY="251.0" text="Secure our Future &quot;">
          <font>
             <Font name="Tahoma" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="218.0" layoutY="71.0" prefHeight="30.0" prefWidth="173.0" text="1000 points for a tree" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Tahoma" size="18.0" />
          </font>
       </Label>
    </children>
