@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.LogInController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="228.0" style="-fx-background-color: #F0EDCE;">
+         <children>
+            <ImageView fitHeight="229.0" fitWidth="228.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="38.0" layoutY="293.0" text="&quot; Nurture the Nature &quot;">
+               <font>
+                  <Font name="Garamond" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="308.0" text="Secure our Future">
+               <font>
+                  <Font name="Garamond" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="400.0" prefWidth="373.0" style="-fx-background-color: WHITE;">
+         <children>
+            <ImageView fitHeight="113.0" fitWidth="119.0" layoutX="136.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/Lock2.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="66.0" layoutY="188.0" text="Email :">
+               <font>
+                  <Font name="Tahoma" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="36.0" layoutY="233.0" text="Password :">
+               <font>
+                  <Font name="Tahoma" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_email" layoutX="137.0" layoutY="183.0" promptText="Enter your email">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tf_password" layoutX="137.0" layoutY="228.0" promptText="Enter your password">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button_login1" layoutX="132.0" layoutY="288.0" mnemonicParsing="false" onAction="#logIn" prefHeight="31.0" prefWidth="119.0" style="-fx-background-color: #FFFACD; -fx-cursor: hand;" text="Login">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="94.0" layoutY="112.0" text="Login Page">
+               <font>
+                  <Font name="Garamond" size="45.0" />
+               </font>
+            </Label>
+            <Label layoutX="123.0" layoutY="344.0" text="Not a user?">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="button_signup1" layoutX="195.0" layoutY="339.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign Up!" textFill="#ff7700" underline="true">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
