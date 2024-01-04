@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="439.0" style="-fx-background-color: f7daba;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Merchandise_keychain.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="183.0" layoutY="42.0" prefHeight="18.0" prefWidth="243.0" text="Merchandise - 1                            " wrapText="true">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="183.0" layoutY="68.0" prefHeight="18.0" prefWidth="190.0" text="Item: Keychain ">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="183.0" layoutY="90.0" prefHeight="18.0" prefWidth="190.0" text="Points: 100 pts">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="183.0" layoutY="108.0" prefHeight="69.0" prefWidth="238.0" text="Description:                                        Fauna &amp; Flora International has introduced their brand new keychain with creative designs" wrapText="true">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

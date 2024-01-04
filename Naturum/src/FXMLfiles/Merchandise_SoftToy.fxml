@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="439.0" style="-fx-background-color: f7c185;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Merchandise_softToy.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="188.0" layoutY="42.0" prefHeight="18.0" prefWidth="243.0" text="Merchandise - 3                           " wrapText="true">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="188.0" layoutY="61.0" prefHeight="18.0" prefWidth="190.0" text="Item: Soft Toy">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="188.0" layoutY="80.0" prefHeight="18.0" prefWidth="190.0" text="Points: 500 pts">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="188.0" layoutY="98.0" prefHeight="92.0" prefWidth="238.0" text="Description:                                        Malaysia Nature Society recently has announced that 'Sloth' and 'Panda'  are joining the Soft Toy family soon. For more information, please look for their official website " wrapText="true">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

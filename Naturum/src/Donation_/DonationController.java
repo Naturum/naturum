@@ -20,7 +20,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import naturum.User;
+import Login.User;
 
 
 
@@ -63,7 +63,7 @@ public class DonationController implements Initializable{
     }
     
     public void back(ActionEvent e) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Donation_MainPage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Donation_MainPage.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -73,6 +73,7 @@ public class DonationController implements Initializable{
     public void confirm(ActionEvent e) throws IOException {
         if (ngoChoiceBox.getValue() == null) {
             reminderLabel.setText("Please select NGO to donate !");
+            return;
         }
         try {
             amountTotal = Integer.parseInt(amountTextField.getText());
@@ -87,7 +88,7 @@ public class DonationController implements Initializable{
             reminderLabel.setText("Please select your payment method !");
         }
         else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Donation_paymentStatement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/Donation_paymentStatement.fxml"));
             root = loader.load();
             
             DonationController2 controller = loader.getController();

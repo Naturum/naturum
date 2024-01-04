@@ -38,12 +38,19 @@ public class DonationController2 {
     }
     
     public void next(ActionEvent e) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Donation_transactionAndNGO.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Donation_transactionAndNGO.fxml"));
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        stage.setX(500);
-        stage.setY(50);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();      
+    }
+    
+    public void switchToMain(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/LoggedIn.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

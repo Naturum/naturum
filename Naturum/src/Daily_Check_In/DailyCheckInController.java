@@ -12,7 +12,8 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javafx.scene.Node;
-import naturum.User;
+import Login.User;
+import java.io.IOException;
 
 /**
  *
@@ -44,16 +45,25 @@ public class DailyCheckInController {
             System.out.println("Point after check in : " + u.getPoints());
             System.out.println("The updated last login date is " + u.getLastLoginDate());
             
-            root = FXMLLoader.load(getClass().getResource("Successful_check_in.fxml")); 
+            root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Successful_check_in.fxml")); 
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show(); 
         }
         else {
-            root = FXMLLoader.load(getClass().getResource("Fail_check_in.fxml")); 
+            root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Fail_check_in.fxml")); 
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();            
         }
+    }
+    
+    public void switchToMain(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/LoggedIn.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
