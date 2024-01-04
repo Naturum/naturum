@@ -21,32 +21,35 @@ import java.io.IOException;
  * @author koayk
  */
 public class PointShopController {
-    @FXML
-    TextField nameTextField;
-    
-    @FXML
-    Label nameLabel;
     
     private Stage stage;
     private Scene scene;
     private Parent root;
     
     public void switchToMerchandise(ActionEvent e) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("PointShop_merchandise.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/PointShop_merchandise.fxml"));
+        root = loader.load();
+        PointShopController2 controller = loader.getController();
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        User user = (User) stage.getUserData();
+        int userPoints = user.getPoints();
+        controller.displayPoint(userPoints);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     
     public void switchToTreePlanting(ActionEvent e) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("PointShop_treePlanting.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/PointShop_treePlanting.fxml"));
+        root = loader.load();
+        PointShopController3 controller2 = loader.getController();
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        User user = (User) stage.getUserData();
+        int userPoints = user.getPoints();
+        controller2.displayPoint(userPoints);
         scene = new Scene(root);
-        stage.setX(500);
-        stage.setY(50);
         stage.setScene(scene);
-        stage.show();        
+        stage.show();     
     }
     
     public void switchToMain(ActionEvent event) throws IOException{
@@ -56,35 +59,5 @@ public class PointShopController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-    
-    public void confirm(ActionEvent e) throws Exception {
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        User user = (User) stage.getUserData();
-        String username = user.getUsername();
-        int userPoints = user.getPoints();
-        System.out.println("Current points of " + username + " are " + userPoints); // To track the current points and username of user
-       
-        if (nameTextField.getText().equals("")) {
-            nameLabel.setText("Please enter any name to be associated to the tree !");
-        }
-        else if (userPoints >= 1000) {
-            user.deductPoints(1000);
-            System.out.println("Points of " + username + " after ordering are " + user.getPoints()); // To track the points after user has ordered
-            
-            PointShopWriter writer = new PointShopWriter();
-            writer.WriteToTreePlantOrder(username, nameTextField.getText());
-            
-            root = FXMLLoader.load(getClass().getResource("PointShop_order_successful.fxml"));
-            scene = new Scene(root);
-            stage.setX(500);
-            stage.setY(250);
-            stage.setScene(scene);
-            stage.show();         
-        }
-        else {
-            nameLabel.setText("Your current points are not enough to plant a tree");
-            nameTextField.clear();
-        }
     }
 }

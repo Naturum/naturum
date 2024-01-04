@@ -16,9 +16,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trivia.TriviaController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0edce" height="131.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
-      <Button fx:id="answer1" layoutX="70.0" layoutY="162.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button" wrapText="true">
+      <Button fx:id="answer1" layoutX="70.0" layoutY="162.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Tahoma" size="18.0" />
+            <Font name="Tahoma" size="13.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -26,23 +26,23 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="answer2" layoutX="362.0" layoutY="162.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button">
+      <Button fx:id="answer2" layoutX="362.0" layoutY="162.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Tahoma" size="18.0" />
+            <Font name="Tahoma" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="answer3" layoutX="70.0" layoutY="290.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button">
+      <Button fx:id="answer3" layoutX="70.0" layoutY="290.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Tahoma" size="18.0" />
+            <Font name="Tahoma" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="answer4" layoutX="362.0" layoutY="290.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button">
+      <Button fx:id="answer4" layoutX="362.0" layoutY="290.0" mnemonicParsing="false" onAction="#AnswerMechanism" prefHeight="75.0" prefWidth="179.0" style="-fx-background-color: #FFFACD;" text="Button" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font size="18.0" />
+            <Font name="Tahoma" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

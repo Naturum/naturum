@@ -1,40 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Donation_.DonationController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Donation_.DonationController2">
    <children>
-      <ImageView fitHeight="375.0" fitWidth="607.0" layoutX="-6.0" layoutY="-5.0" opacity="0.65" pickOnBounds="true">
-         <image>
-            <Image url="@green%20nature%20background.jpg" />
-         </image>
-      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7daba" height="66.0" layoutX="-3.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="606.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7c185" height="66.0" layoutX="-3.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="606.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7c580" height="66.0" layoutX="-3.0" layoutY="334.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="606.0" />
       <Separator layoutX="200.0" layoutY="75.0" prefWidth="200.0" visible="false" />
-      <Label layoutX="30.0" layoutY="23.0" prefHeight="54.0" prefWidth="249.0" text="DONATION " textFill="#2a562b">
+      <Label layoutX="278.0" layoutY="142.0" prefHeight="38.0" prefWidth="138.0" text="Donation">
          <font>
-            <Font name="Gill Sans Ultra Bold" size="36.0" />
+            <Font name="Garamond" size="36.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="30.0" layoutY="83.0" prefHeight="204.0" prefWidth="540.0" text="Kill two birds with one stone !&#10;Are you planning to gain more points while contributing to the nature?&#10;Here you go ! Support local and international NGOs by funding their&#10;project. For each $1 you have donated, 10 points are rewarded ! &#10;90% of the donations will go to the selected NGO and the remaining &#10;will be used to fund this project. &#10;Kindly inform that minimum donation will be $1 and no cents are &#10;accepted :)&#10;So, what are you waiting for? Grab your opportunity to conserve the&#10;beauty of nature !&#10;&#10;&#10;&#10;" wrapText="true">
+      <AnchorPane prefHeight="400.0" prefWidth="88.0" style="-fx-background-color: #F0EDCE;">
+         <children>
+            <ImageView fitHeight="88.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Button layoutY="98.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #FFFFE0; -fx-cursor: hand;" text="Main">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="532.0" layoutY="217.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/donation_leaf.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="94.0" fitWidth="94.0" layoutX="300.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Donation.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="156.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/butterfly_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="102.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/roses.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="532.0" layoutY="350.0" mnemonicParsing="false" onAction="#next" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: #FFFACD;" text="Next">
          <font>
-            <Font name="Lucida Console" size="16.0" />
+            <Font name="Arial" size="12.0" />
          </font>
-      </TextArea>
-      <Button layoutX="300.0" layoutY="303.0" mnemonicParsing="false" onAction="#next" prefHeight="32.0" prefWidth="66.0" style="-fx-background-radius: 20;" text="Next" textFill="#7b3030">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="16.0" />
-         </font></Button>
-      <Button layoutX="213.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="32.0" prefWidth="66.0" style="-fx-background-radius: 20;" text="Back" textFill="#7b3030">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="16.0" />
-         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
+      <Label layoutX="156.0" layoutY="236.0" text="For each $1 you have donated, 10 points are rewarded !">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="215.0" layoutY="286.0" prefHeight="38.0" prefWidth="369.0" text="90% of the donations will go to the selected NGO and the remaining will be used to fund this project." wrapText="true">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="137.0" layoutY="347.0" prefHeight="38.0" prefWidth="326.0" text="Kindly inform that minimum donation will be $1 and no cents are accepted :)" wrapText="true">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font>
+      </Label>
+      <Accordion />
    </children>
 </AnchorPane>

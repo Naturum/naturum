@@ -73,6 +73,7 @@ public class DonationController implements Initializable{
     public void confirm(ActionEvent e) throws IOException {
         if (ngoChoiceBox.getValue() == null) {
             reminderLabel.setText("Please select NGO to donate !");
+            return;
         }
         try {
             amountTotal = Integer.parseInt(amountTextField.getText());

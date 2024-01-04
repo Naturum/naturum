@@ -30,52 +30,61 @@ public class triviaRecordController {
     private Parent root;
     
     int day;
+    
+    //Initialise page
     public void unlockRecord(User u){
+        //Get current day
         LocalDate now = LocalDate.now();
         int day = (int) ChronoUnit.DAYS.between(u.getRegDate(), now) + 1;
+        //Get list of completed trivias by the user
         SQLController sc = new SQLController();
         sc.openConnection();
         ArrayList<Integer> trivia = sc.getTriviaRecord(u.getIdUser());
         int i =1;
+        
+        //Check each button from day 1 to 10, and unlock them depending on if the user already completed the trivia or not
         for (Node node : buttonGroup.getChildren()){
-            if (i<day){
+            if (i<day){ //The days before the current day can be replayed, so the buttons are unlocked
                 ((Button) node).setDisable(false);
-                if (trivia.contains(i)){
+                if (trivia.contains(i)){ //User completed the trivia before, allow replay
                     ((Button) node).setStyle("-fx-background-color:  #FFFACD");
                     ((Button) node).setOnAction(e -> {try {
                         switchToReplay(e);
                     } catch (IOException ex) {System.out.println(ex);}
                 });
-                } else{
+                } else{ //The user missed these trivias, can retry them but without points
                     ((Button) node).setStyle("-fx-background-color:  #F5AB39");
                     ((Button) node).setOnAction(e -> {try {
                         switchToTrivia(e);
                     } catch (IOException ex) {System.out.println(ex);}
                         });
                     }
-            } else if (i==day){
-                if (trivia.contains(i)){
+            } else if (i==day){ //Need to check if user has completed trivia for today 
+                if (trivia.contains(i)){ //If user already done today's trivia, allow replay
                     ((Button) node).setStyle("-fx-background-color:  #FFFACD");
                     ((Button) node).setDisable(false);
                     ((Button) node).setOnAction(e -> {try {
                         switchToReplay(e);
                     } catch (IOException ex) {System.out.println(ex);}
-                });
+                }); //If user has not completed today's trivia, the button is locked altogether.
                 }
             }
             i++;
         }
     }
     
+    //switch to trivia replay page
     public void switchToReplay(ActionEvent event) throws IOException{
         Object source = event.getSource();
         Button dayButton = (Button)source;
-        int day = Character.getNumericValue(dayButton.getText().charAt(4));
+        int day = Character.getNumericValue(dayButton.getText().charAt(4)); //Get the specific trivia based on the button user pressed
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/triviaReplay.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
         User u = (User) stage.getUserData();
+        
+        //Initialise the replay page
         triviaReplayController triviaReplayCon = loader.getController();
         triviaReplayCon.day = this.day;
         triviaReplayCon.initQuestion(day, u.getIdUser());
@@ -84,15 +93,17 @@ public class triviaRecordController {
         stage.show();
     }
     
+    //Switch to trivia page (retry)
     public void switchToTrivia(ActionEvent event) throws IOException{
         Object source = event.getSource();
         Button dayButton = (Button)source;
-        int day = Character.getNumericValue(dayButton.getText().charAt(4));
+        int day = Character.getNumericValue(dayButton.getText().charAt(4)); //Get the specific trivia based on the button user pressed
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/trivia.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();  
         User u = (User) stage.getUserData();
+        //Initialise the page
         TriviaController triviaCon = loader.getController();
         triviaCon.displayQuestion(u, true, day);
         scene = new Scene(root);
@@ -100,11 +111,14 @@ public class triviaRecordController {
         stage.show();
     }
     
+    //Switch to trivia menu
     public void switchToTriviaMenu(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/triviaMenu.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         User u = (User) stage.getUserData();
+        
+        //Initialise the page by checking today's day
         LocalDate now = LocalDate.now();
         int day = (int) ChronoUnit.DAYS.between(u.getRegDate(), now) + 1;
         SQLController sc = new SQLController();

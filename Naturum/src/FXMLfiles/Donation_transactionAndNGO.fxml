@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -8,57 +9,45 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Donation_.DonationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f7daba;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Donation_.DonationController">
    <children>
-      <ImageView fitHeight="660.0" fitWidth="587.0" layoutY="-5.0" opacity="0.59" pickOnBounds="true">
-         <image>
-            <Image url="@green%20nature%20background.jpg" />
-         </image>
-      </ImageView>
-      <ChoiceBox fx:id="ngoChoiceBox" layoutX="218.0" layoutY="217.0" prefWidth="150.0" />
-      <Label layoutX="87.0" layoutY="216.0" prefHeight="26.0" prefWidth="139.0" text="NGO                      : ">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="241.0" layoutX="39.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="518.0" />
+      <ChoiceBox fx:id="ngoChoiceBox" layoutX="275.0" layoutY="152.0" prefWidth="150.0" />
+      <Label layoutX="122.0" layoutY="151.0" prefHeight="26.0" prefWidth="158.0" text="NGO                      : ">
          <font>
-            <Font size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="186.0" prefHeight="22.0" prefWidth="211.0" text="Select your NGO to donate">
+      <Label layoutX="119.0" layoutY="237.0" prefHeight="20.0" prefWidth="157.0" text="PAYMENT METHOD   :">
          <font>
-            <Font name="Berlin Sans FB" size="18.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="339.0" prefHeight="22.0" prefWidth="220.0" text="Select your payment method">
+      <ChoiceBox fx:id="paymentChoiceBox" layoutX="275.0" layoutY="236.0" prefWidth="150.0" />
+      <Button layoutX="216.0" layoutY="359.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="59.0" style="-fx-background-color: #FFFACD;" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="320.0" layoutY="359.0" mnemonicParsing="false" onAction="#confirm" prefHeight="26.0" prefWidth="59.0" style="-fx-background-color: #FFFACD;" text="Confirm">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="reminderLabel" alignment="CENTER" layoutX="120.0" layoutY="110.0" prefHeight="26.0" prefWidth="329.0" textFill="#ec0707">
          <font>
-            <Font name="Berlin Sans FB" size="18.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="61.0" layoutY="376.0" prefHeight="20.0" prefWidth="150.0" text="PAYMENT METHOD  :">
+      <TextField fx:id="amountTextField" layoutX="275.0" layoutY="192.0" />
+      <Label layoutX="121.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" text="DONATION AMOUNT :">
          <font>
-            <Font size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="paymentChoiceBox" layoutX="218.0" layoutY="373.0" prefWidth="150.0" />
-      <Button layoutX="227.0" layoutY="562.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="59.0" text="Back" />
-      <Button layoutX="300.0" layoutY="562.0" mnemonicParsing="false" onAction="#confirm" prefHeight="26.0" prefWidth="59.0" text="Confirm" />
-      <Label fx:id="reminderLabel" alignment="CENTER" layoutX="41.0" layoutY="143.0" prefHeight="42.0" prefWidth="502.0" textFill="#ec0707">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="amountTextField" layoutX="218.0" layoutY="290.0" />
-      <Label layoutX="61.0" layoutY="289.0" prefHeight="26.0" prefWidth="150.0" text="DONATION AMOUNT :">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="257.0" prefHeight="22.0" prefWidth="220.0" text="Select your donation amount">
-         <font>
-            <Font name="Berlin Sans FB" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="221.0" layoutY="316.0" prefHeight="18.0" prefWidth="130.0" text="*Enter 1 for $1 and etc" textFill="#e40e0e" />
-      <ImageView fitHeight="100.0" fitWidth="140.0" layoutX="32.0" layoutY="32.0" pickOnBounds="true">
+      <Label layoutX="276.0" layoutY="217.0" prefHeight="18.0" prefWidth="130.0" text="*Enter 1 for $1 and etc" textFill="#e40e0e" />
+      <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/WWF_logo.jpg" />
          </image>
@@ -66,7 +55,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="140.0" layoutX="222.0" layoutY="32.0" pickOnBounds="true">
+      <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="246.0" layoutY="14.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/FAUNA_&amp;_FLORA_INTERNATIONAL.jpg" />
          </image>
@@ -74,7 +63,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="140.0" layoutX="402.0" layoutY="32.0" pickOnBounds="true">
+      <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="425.0" layoutY="14.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/malaysia_nature_society_logo.png" />
          </image>
@@ -82,17 +71,17 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fitHeight="85.0" fitWidth="90.0" layoutX="91.0" layoutY="431.0" pickOnBounds="true">
+      <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="218.0" layoutY="287.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/Touch_n_Go_logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="85.0" fitWidth="90.0" layoutX="247.0" layoutY="431.0" pickOnBounds="true">
+      <ImageView fitHeight="61.0" fitWidth="50.0" layoutX="335.0" layoutY="274.0" pickOnBounds="true">
          <image>
-            <Image url="@../assets/Mastercard_logo..jpg" />
+            <Image url="@../assets/Visa%20icon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="85.0" fitWidth="90.0" layoutX="402.0" layoutY="431.0" pickOnBounds="true">
+      <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="281.0" layoutY="287.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/FPX_logo.jpg" />
          </image>

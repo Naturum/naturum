@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import news.NewsController;
 import trivia.SQLController;
 import trivia.triviaMenuController;
 
@@ -102,6 +103,31 @@ private Parent root;
         XpLeaderboardController controller = loader.getController();
         controller.displayLeaderboard();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void switchToNews(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/News.fxml"));
+        root = loader.load();
+        NewsController controller = loader.getController();
+        controller.init();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void logout(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/LogIn.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        User u = (User) stage.getUserData();
+        if (u!=null){
+            LoginSQLController sc = new LoginSQLController();
+            sc.updateUser(u);
+        }
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

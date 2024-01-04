@@ -44,12 +44,15 @@ public class PointShopController2 implements Initializable {
     @FXML
     TextArea addressTextArea;
     
+    @FXML
+    TextField merchandisePoint;
+  
     private Stage stage;
     private Scene scene;
     private Parent root;
     
     public void backButton(ActionEvent e) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("PointShop_page.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FXMLfiles/PointShop_page.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -81,7 +84,7 @@ public class PointShopController2 implements Initializable {
             PointShopWriter writer = new PointShopWriter();
             writer.WriteToMerchandiseOrder(username, Integer.parseInt(purchaseTextField.getText()), merchChoiceBox.getValue(), addressTextArea.getText());
             
-            root = FXMLLoader.load(getClass().getResource("PointShop_order_successful.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/FXMLfiles/PointShop_order_successful.fxml"));
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -114,6 +117,37 @@ public class PointShopController2 implements Initializable {
             totalPoints = purchaseNum * 500;
         }
         return totalPoints;
+    }
+    
+    public void merch1Description(ActionEvent e) throws Exception {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Merchandise_Keychain.fxml"));
+        Scene scene = new Scene(root);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show(); 
+    }
+    
+    public void merch2Description(ActionEvent e) throws Exception {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Merchandise_CanvaBag.fxml"));
+        Scene scene = new Scene(root);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show(); 
+    }
+    
+    public void merch3Description(ActionEvent e) throws Exception {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Merchandise_SoftToy.fxml"));
+        Scene scene = new Scene(root);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show(); 
+    }
+    
+    public void displayPoint(int points) {
+        merchandisePoint.setText("Points: " + points);
     }
 }
             

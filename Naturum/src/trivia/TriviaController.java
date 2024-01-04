@@ -43,6 +43,8 @@ public class TriviaController {
     private RealTrivia trivia;
     
     private String correct;
+    
+    //Method to display Trivia question based on the object attributes
     public void displayQuestion(User u, boolean replay, int day) throws IOException{
         this.trivia = new RealTrivia(u, replay, day);
         String[] options = trivia.getOptions();
@@ -53,18 +55,23 @@ public class TriviaController {
         answer4.setText(options[3]);
     }
     
+    
+    //Method that is called when user submits an answer
     public void AnswerMechanism(ActionEvent event){
         Object source = event.getSource();
         Button answerButton = (Button)source;
-        String answer = answerButton.getText();
+        String answer = answerButton.getText(); //The text of the button that user clicked is the submitted answer
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         User u = (User) stage.getUserData();
-        if (!trivia.answered(answer))
+        
+        //If answer is wrong 
+        if (!trivia.answered(answer)) 
             if (trivia.getAttempts() == 0){
                 correctAnswer.setText(correct);
                 deathScreen.setVisible(true);
             }else
                 WrongOption();
+        //If answer is correct
         else{
             correctScreen.setVisible(true);
             if (trivia.getReplay()){
@@ -75,8 +82,10 @@ public class TriviaController {
         }
     }
     
+    //Called when answer is wrong but user still has attempts
     public void WrongOption(){
-       wrongScreen.setVisible(true);
+       wrongScreen.setVisible(true); //show wrong screen
+       //shuffle the options
        int[] xcoord = {70,362,70,362};
        int[] ycoord = {162,162,290,290};
        int[] indices = {0,1,2,3};
@@ -95,6 +104,7 @@ public class TriviaController {
        answer4.setLayoutX(xcoord[indices[3]]);
        answer4.setLayoutY(ycoord[indices[3]]);
        
+       //Loading animation for the user to think
        Timeline timeline = new Timeline(
         new KeyFrame(Duration.ZERO, new KeyValue(cooldown.progressProperty(), 0)),
         new KeyFrame(Duration.seconds(3), e-> {
@@ -105,17 +115,21 @@ public class TriviaController {
     timeline.play();
     }
     
+    //Switch to triviaMenu.fxml
     public void switchToTriviaMenu(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLfiles/triviaMenu.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         User u = (User) stage.getUserData();
+        
+        //Get current day and pass to initialise next page
         LocalDate now = LocalDate.now();
         int day = (int) ChronoUnit.DAYS.between(u.getRegDate(), now) + 1;
         SQLController sc = new SQLController();
         sc.openConnection();
         triviaMenuController triviaMenuCon = loader.getController();
         triviaMenuCon.init(sc.checkDailyTrivia(u.getIdUser(), day),day);
+        
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

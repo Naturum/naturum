@@ -40,8 +40,6 @@ public class DonationController2 {
     public void next(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/FXMLfiles/Donation_transactionAndNGO.fxml"));
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        stage.setX(500);
-        stage.setY(50);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();      

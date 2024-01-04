@@ -1,44 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PointShop.PointShopController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PointShop.PointShopController">
    <children>
-      <Label layoutX="27.0" layoutY="26.0" prefHeight="60.0" prefWidth="235.0" text="POINT SHOP ">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7c185" height="231.0" layoutX="345.0" layoutY="169.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="257.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7daba" height="231.0" layoutX="88.0" layoutY="169.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="257.0" />
+      <Label layoutX="263.0" layoutY="118.0" prefHeight="41.0" prefWidth="162.0" text="Point Shop">
          <font>
-            <Font name="Bernard MT Condensed" size="36.0" />
+            <Font name="Garamond" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="120.0" prefHeight="30.0" prefWidth="549.0" text="Come and redeem valuable merchandises with your points, you can even plant a tree with your name." />
-      <Label layoutX="28.0" layoutY="97.0" prefHeight="22.0" prefWidth="365.0" text="Have you ever wondered how to spend your points ?" />
-      <Label layoutX="27.0" layoutY="150.0" prefHeight="22.0" prefWidth="541.0" text="What are you still waiting for ? Let's contribute to our mother nature for more miracles !" />
-      <ImageView fitHeight="109.0" fitWidth="150.0" layoutX="319.0" layoutY="201.0" pickOnBounds="true">
+      <Button layoutX="141.0" layoutY="342.0" mnemonicParsing="false" onAction="#switchToMerchandise" prefHeight="43.0" prefWidth="152.0" style="-fx-background-color: #FFFFAD;" text="Claim your merch here !">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="399.0" layoutY="342.0" mnemonicParsing="false" onAction="#switchToTreePlanting" prefHeight="43.0" prefWidth="152.0" style="-fx-background-color: #FFFFAD;" text="Have your own tree !">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="169.0" layoutY="244.0" text="Merchandise">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="458.0" layoutY="243.0" text="Tree">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="88.0" style="-fx-background-color: #F0EDCE;">
+         <children>
+            <ImageView fitHeight="88.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo.png" />
+               </image>
+            </ImageView>
+            <Button layoutY="98.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #FFFFE0; -fx-cursor: hand;" text="Main">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="94.0" fitWidth="94.0" layoutX="297.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Tree_logo.jpg" />
+            <Image url="@../assets/shop%20icon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="109.0" fitWidth="150.0" layoutX="110.0" layoutY="201.0" pickOnBounds="true">
+      <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="182.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Merchandise_logo.jpg" />
+            <Image url="@../assets/merchandise%20icon.png" />
          </image>
       </ImageView>
-      <Button layoutX="109.0" layoutY="202.0" mnemonicParsing="false" onAction="#switchToMerchandise" opacity="0.0" prefHeight="109.0" prefWidth="150.0" text="Button" />
-      <Button layoutX="320.0" layoutY="201.0" mnemonicParsing="false" onAction="#switchToTreePlanting" opacity="0.0" prefHeight="110.0" prefWidth="150.0" text="Button" />
-      <Label layoutX="146.0" layoutY="312.0" text="Merchandise">
+      <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="443.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/tree%20icon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="112.0" layoutY="270.0" prefHeight="57.0" prefWidth="204.0" text="Can't wait to grab the exclusive merchandise? Spend your points to redeem the merchandise XD" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Berlin Sans FB" size="15.0" />
+            <Font name="Tahoma" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="380.0" layoutY="312.0" text="Tree">
+      <Label layoutX="373.0" layoutY="268.0" prefHeight="63.0" prefWidth="204.0" text="Start contributing to the nature by planting a tree! Do you know that you have a chance to plant a tree with your name? " textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Berlin Sans FB" size="15.0" />
+            <Font name="Tahoma" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="277.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
    </children>
 </AnchorPane>

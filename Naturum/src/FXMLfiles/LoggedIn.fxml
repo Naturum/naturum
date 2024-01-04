@@ -13,10 +13,13 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="88.0" style="-fx-background-color: #F0EDCE;">
          <children>
-            <Button fx:id="button_logout" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" style="-fx-background-color: #FFFFE0;" text="Log Out">
+            <Button fx:id="button_logout" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #FFFFE0;" text="Log Out">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
@@ -31,35 +34,107 @@
          </font>
       </Label>
       <Accordion />
-      <Button layoutX="131.0" layoutY="111.0" mnemonicParsing="false" onAction="#switchToCheckIn" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #85c2fb;" text="Daily Check-in">
+      <Button layoutX="131.0" layoutY="111.0" mnemonicParsing="false" onAction="#switchToCheckIn" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #85c2fb;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="84.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/dailyCheckIn_leaf.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button layoutX="295.0" layoutY="111.0" mnemonicParsing="false" onAction="#switchToTriviaMenu" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #84fac4;" text="Trivia">
+      <Button layoutX="295.0" layoutY="111.0" mnemonicParsing="false" onAction="#switchToTriviaMenu" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #84fac4;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="71.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/quiz_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button layoutX="458.0" layoutY="111.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #fac384;" text="News">
+      <Button layoutX="458.0" layoutY="111.0" mnemonicParsing="false" onAction="#switchToNews" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #fac384;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/news-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button layoutX="131.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToPointShop" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #a884fa;" text="Points Shop">
+      <Button layoutX="131.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToPointShop" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #a884fa;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="77.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/shop%20icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button layoutX="295.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToDonation" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #fa8484;" text="Donations">
+      <Button layoutX="295.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToDonation" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #fa8484;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="88.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/Donation.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button layoutX="458.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToXpLeaderboard" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #fa84de;" text="Leaderboard">
+      <Button layoutX="458.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToXpLeaderboard" prefHeight="98.0" prefWidth="98.0" style="-fx-border-radius: 50%; -fx-background-radius: 50%; -fx-background-color: #fa84de;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="87.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/Crown.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
+      <Label fx:id="label_welcome1" layoutX="121.0" layoutY="209.0" prefHeight="35.0" prefWidth="117.0" style="-fx-alignment: center;" text="Daily Check-In">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_welcome11" layoutX="285.0" layoutY="209.0" prefHeight="35.0" prefWidth="117.0" style="-fx-alignment: center;" text="Trivia">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_welcome12" layoutX="448.0" layoutY="209.0" prefHeight="35.0" prefWidth="117.0" style="-fx-alignment: center;" text="News">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_welcome13" layoutX="121.0" layoutY="353.0" prefHeight="35.0" prefWidth="117.0" style="-fx-alignment: center;" text="Points Shop">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_welcome14" layoutX="285.0" layoutY="353.0" prefHeight="35.0" prefWidth="117.0" style="-fx-alignment: center;" text="Donations">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_welcome15" layoutX="448.0" layoutY="353.0" prefHeight="35.0" prefWidth="117.0" style="-fx-alignment: center;" text="Leaderboard">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
