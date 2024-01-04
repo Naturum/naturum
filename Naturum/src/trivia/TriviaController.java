@@ -66,7 +66,7 @@ public class TriviaController {
         
         //If answer is wrong 
         if (!trivia.answered(answer)) {
-            if (trivia.getAttempts() <0){
+            if (trivia.getAttempts()==0){
                 correctAnswer.setText(trivia.getAnswer());
                 deathScreen.setVisible(true);
             }else
@@ -77,7 +77,7 @@ public class TriviaController {
             if (trivia.getReplay()){
                 pointsMessage.setText("This is a replay, no points are awarded.");
             } else{
-                if (trivia.getAttempts()==1)
+                if (trivia.getAttempts()==2)
                     pointsMessage.setText("You have been awarded 2 points, you now have " + u.getPoints() + " points.");
                 else{
                     pointsMessage.setText("You have been awarded 1 point, you now have " + u.getPoints() + " points.");

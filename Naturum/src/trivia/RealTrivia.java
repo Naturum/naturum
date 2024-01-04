@@ -22,7 +22,7 @@ public class RealTrivia extends Trivia{
     public RealTrivia(User u, boolean replay, int day){
         super(day);
         this.u = u;
-        this.attempts = 1;
+        this.attempts = 2;
         this.replay = replay;
     }
     
@@ -42,7 +42,7 @@ public class RealTrivia extends Trivia{
             if (!replay){ //If this trivia is not a replay, then award points
                 int points;
                 //points awarded based on remaining attempts
-                if (attempts==1)
+                if (attempts==2)
                     points = 2;
                 else
                     points = 1;
@@ -54,13 +54,11 @@ public class RealTrivia extends Trivia{
             sc.insertRecord(u.getIdUser(), super.getDay()); //Record in database that user has completed this trivia
             return true;
         } else{
+            attempts-=1;
             if (this.attempts==0){ //If user run out of attempts, record that user has completed trivia, no points awarded
-                attempts-=1;
                 sc.openConnection();
                 sc.insertRecord(u.getIdUser(), super.getDay());
-            } else{ //otherwise, reduce attempts and let user keep going
-                attempts-=1;
-            }
+            } 
             return false;
         }
     }
