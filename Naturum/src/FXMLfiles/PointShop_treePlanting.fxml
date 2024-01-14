@@ -43,7 +43,7 @@
             <Image url="@../assets/treePlanting%20icon.png" />
          </image>
       </ImageView>
-      <TextField fx:id="treePlantingPoint" layoutX="444.0" layoutY="16.0" prefHeight="30.0" prefWidth="143.0" style="-fx-background-color: f0edce;" text="Points: 0">
+      <TextField fx:id="treePlantingPoint" editable="false" layoutX="444.0" layoutY="16.0" prefHeight="30.0" prefWidth="143.0" style="-fx-background-color: f0edce;" text="Points: 0">
          <font>
             <Font name="Tahoma Bold" size="12.0" />
          </font>

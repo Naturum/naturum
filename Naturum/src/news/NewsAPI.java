@@ -24,12 +24,15 @@ public class NewsAPI {
     private String[][] articles;
     
     public NewsAPI(){
+        //Create multidimensional array to store news article that will be obtained from API
+        //5 articles, with 3 details for each article, which is title, date published and url link
         articles = new String[5][3];
         try{
             BufferedReader reader;
             String line;
             StringBuilder responseContent = new StringBuilder();
             
+            //Make API request by creating connection to the link
             URL url = new URL("https://newsapi.org/v2/everything?q=nature+climate+environment&from=2023-12-20&sortBy=publishedAt&apiKey=3b527360118545beb23c69faac50efdb");
             connection = (HttpURLConnection) url.openConnection();
             
@@ -37,32 +40,36 @@ public class NewsAPI {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             
+            //Get response status of the API request
             int status = connection.getResponseCode();
             System.out.println(status);        
             
-            if (status>299){
+            if (status>299){ //If unsuccessful
                 reader =new BufferedReader(new InputStreamReader(connection.getErrorStream()));
                 while((line = reader.readLine())!=null){
                     responseContent.append(line);
                 }
                 reader.close();
-            }else{
+            }else{ //If successful
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 while((line = reader.readLine()) !=null){
-                    responseContent.append(line);
+                    responseContent.append(line); //Read the returned content from the API request
                 }
                 reader.close();
             }
             
+            //The API returns content in a JSON format. Therefore, we need to extract the information out
             try{
-                JSONParser parser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) parser.parse(responseContent.toString());
-                JSONArray newsArticle = (JSONArray) jsonObject.get("articles");
-            
+                JSONParser parser = new JSONParser(); //Object to parse string to JSONObject
+                JSONObject jsonObject = (JSONObject) parser.parse(responseContent.toString()); //Parsing
+                JSONArray newsArticle = (JSONArray) jsonObject.get("articles"); //Get the news articles from the object
+                
+                //Loop through the elements in the JSONObject, and extract the information we want
                 int count=0;
                 for(Object articleElement: newsArticle){
-                    if (count>4)
+                    if (count>4) //We only need 5 top records, so loop only 5 times
                         break;
+                    //Store the extracted information into the array
                     JSONObject article = (JSONObject) articleElement;
                     this.articles[count][0] = (String) article.get("title");
                     this.articles[count][1] = (String) article.get("url");

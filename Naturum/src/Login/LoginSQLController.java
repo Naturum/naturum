@@ -95,14 +95,20 @@ public class LoginSQLController {
     public void signUpUser(ActionEvent event, String email, String username, String password, String password1){
         Connection con = null;
         PreparedStatement psCheckUserExist = null;
+        PreparedStatement psCheckEmailExist = null;
         PreparedStatement psInsert = null;
         ResultSet resultSet = null;
+        ResultSet resultSet1 = null;
         
         try{
             con = DriverManager.getConnection(dbName, dbUsername, dbPass);
             psCheckUserExist = con.prepareStatement("SELECT * FROM users WHERE username = ?");
             psCheckUserExist.setString(1, username);
             resultSet = psCheckUserExist.executeQuery();
+            
+            psCheckEmailExist = con.prepareStatement("SELECT * FROM users WHERE email = ?");
+            psCheckEmailExist.setString(1, email);
+            resultSet1 = psCheckEmailExist.executeQuery();
             
             String regex = "^[a-zA-Z0-9_.-]+@(gmail\\.com|yahoo\\.com|hotmail\\.com|outlook\\.com)$";
             Pattern pattern = Pattern.compile (regex);
@@ -112,6 +118,13 @@ public class LoginSQLController {
                 System.out.println("Password do not match!");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Password do not match! Try again.");
+                alert.show();
+            }
+            
+            else if (resultSet1.isBeforeFirst()){
+                System.out.println("Email already exist!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Email is already registered! Please use another email.");
                 alert.show();
             }
             
@@ -156,7 +169,21 @@ public class LoginSQLController {
                     e.printStackTrace();
                 }
             }
+            if (resultSet1 != null){
+                try{
+                    resultSet.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
             if (psCheckUserExist != null){
+                try{
+                    psCheckUserExist.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (psCheckEmailExist != null){
                 try{
                     psCheckUserExist.close();
                 } catch (SQLException e){

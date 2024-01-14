@@ -42,8 +42,6 @@ public class TriviaController {
     
     private RealTrivia trivia;
     
-    private String correct;
-    
     //Method to display Trivia question based on the object attributes
     public void displayQuestion(User u, boolean replay, int day) throws IOException{
         this.trivia = new RealTrivia(u, replay, day);

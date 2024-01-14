@@ -29,6 +29,7 @@ public class NewsController {
     
     @FXML AnchorPane textGroup, linkGroup;
     
+    //Switch to LoggedIn.fxml
     public void switchToMain(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/FXMLfiles/LoggedIn.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -37,14 +38,17 @@ public class NewsController {
         stage.show();
     }
     
+    //Initialise the page
     public void init(){
-        NewsAPI news = new NewsAPI();
-        String[][] articles = news.getArticles();
+        NewsAPI news = new NewsAPI(); //Create the object that connects to API
+        String[][] articles = news.getArticles(); //Get list of news
+        //Loop through the Label elements and set text as the news records retrieved
         int i = 0; 
         for (Node node : textGroup.getChildren()){
-            ((Label) node).setText(articles[i][0] + "\n" + articles[i][2].substring(0,10));
+            ((Label) node).setText(articles[i][0] + "\n" + articles[i][2].substring(0,10)); //Title of news and date published
             i++;
         }
+        //Loop through the Hyperlink elements to set the news article links
         i = 0;
         for (Node node: linkGroup.getChildren()){
             ((Hyperlink) node).setText(articles[i][1]);
@@ -52,10 +56,11 @@ public class NewsController {
         }
     }
     
+    //Method called when user clicks on news article's link
     public void link(ActionEvent event) throws IOException{
         String url = ((Hyperlink) event.getSource()).getText();
         try{
-            Desktop.getDesktop().browse(new URL(url).toURI());
+            Desktop.getDesktop().browse(new URL(url).toURI()); //Open the website on browser
         } catch (Exception e){
             
         }
